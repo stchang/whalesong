@@ -6,10 +6,9 @@
 
 
 (version-case
-  [(and (version>= (version) "5.3.3.7")
-        (version< (version) "6.1.1"))
+  [(version>= (version) "6.1.1")
 
-   ;; Parsing Racket 5.3 bytecode structures into our own structures.
+   ;; Parsing Racket 6.1.1 bytecode structures into our own structures.
    (require "path-rewriter.rkt"
             "../compiler/expression-structs.rkt"
             "../compiler/lexical-structs.rkt"
@@ -226,10 +225,9 @@
        (let ([rewritten-path (rewrite-path resolved-path-name)])
          (cond
           [(symbol? rewritten-path)
-           (make-ModuleLocator (rewrite-path resolved-path-name)
+           (make-ModuleLocator rewritten-path
                                (normalize-path resolved-path-name))]
           [else
-           (displayln (list 'wrap-module-name resolved-path-name rewritten-path))
            (error 'wrap-module-name "Unable to resolve module path ~s."
                   resolved-path-name)]))]))
    

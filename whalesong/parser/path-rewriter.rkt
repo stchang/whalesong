@@ -44,6 +44,11 @@
        (string-append "collects/"
                       (my-path->string
                        (find-relative-path collects-path a-path))))]
+     [(within-share? a-path)
+      (string->symbol
+       (string-append "share/"
+                      (my-path->string
+                       (find-relative-path share-path a-path))))]
      [(within-root-path? a-path)
       (string->symbol
        (string-append "root/"
@@ -68,6 +73,10 @@
 
 (define (within-collects? a-path)
   (within? collects-path a-path))
+
+
+(define (within-share? a-path)
+  (within? share-path a-path))
 
 
 (define (within-whalesong-path? a-path)
